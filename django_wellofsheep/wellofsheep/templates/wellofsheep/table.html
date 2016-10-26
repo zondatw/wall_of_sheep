@@ -1,0 +1,31 @@
+<body>
+	{% extends 'wellofsheep/index.html' %}
+	<article>
+		{% block content %}
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+		</script>
+			<script type="text/javascript">
+				function refresh() {
+					$.ajax({
+						url: {% url 'get_more_tables' %},
+						success: function(reponse) {
+							$('#_table').html(reponse);
+						}
+					});
+					setInterval("refresh()", 100000);
+				}
+				
+				$(function() {
+					refresh();
+				});
+				
+		</script>
+
+		
+			
+		<div id = '_table'>
+			{% include 'wellofsheep/get_more_tables.html' %}
+		</div>
+		{% endblock %}
+	</article>
+</body>
