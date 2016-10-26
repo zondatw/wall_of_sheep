@@ -1,20 +1,8 @@
-<table>
-	<thead>
-		<tr>
-			<th>Account</th>
-			<th>Password</th>
-			<th>IP</th>
-			<th>option</th>
-		</tr>
-	</thead>
-	<tbody>
-	{% for sheep in sheeps %}
-		<tr>
-			<td>{{ sheep.account }}</td>
-			<td>{{ sheep.password }}</td>
-			<td>{{ sheep.ip }}</td>
-			<td>{{ sheep.option }}</td>
-		</tr>
-	{% endfor %}
-	</tbody>
-</table>
+{% for sheep in sheeps %}
+	<tr>
+		<td>{{ sheep.account }}</td>
+		<td>{{ sheep.password }}</td>
+		<td>{{ sheep.ip }}</td>
+		<td>{{ sheep.option }}</td>
+	</tr>
+{% endfor %}

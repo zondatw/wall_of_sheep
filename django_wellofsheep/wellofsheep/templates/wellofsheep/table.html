@@ -1,5 +1,5 @@
 <body>
-	{% extends 'wellofsheep/index.html' %}
+	{% extends 'wellofsheep/base.html' %}
 	<article>
 		{% block content %}
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
@@ -12,7 +12,7 @@
 							$('#_table').html(reponse);
 						}
 					});
-					setInterval("refresh()", 100000);
+					setInterval("refresh()", 10000);
 				}
 				
 				$(function() {
@@ -21,10 +21,20 @@
 				
 		</script>
 
-		
-			
 		<div id = '_table'>
-			{% include 'wellofsheep/get_more_tables.html' %}
+			<table>
+				<thead>
+					<tr>
+						<th>Account</th>
+						<th>Password</th>
+						<th>IP</th>
+						<th>option</th>
+					<tr>
+				</thead>
+				<tbody>
+					{% include 'wellofsheep/get_more_tables.html' %}
+				</tbody>
+			</table>
 		</div>
 		{% endblock %}
 	</article>
