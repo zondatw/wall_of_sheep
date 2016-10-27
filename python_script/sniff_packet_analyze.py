@@ -43,9 +43,9 @@ def http_analyze(pcap):
         
         print 'IP:{}:{} {}=> userid = {} & passwd = {}'.format(pcap[IP].dst, application, method, userid, passwd)
     
-        conn = sqlite3.connect('../django_wellofsheep/db.sqlite3')
+        conn = sqlite3.connect('../django_wallofsheep/db.sqlite3')
         cursor = conn.cursor()
-        cursor.execute('insert into wellofsheep_sheeps_table (account, password, ip, application, method) values (?, ?, ?, ?, ?)', (userid, passwd, pcap[IP].dst, application, method))
+        cursor.execute('insert into wallofsheep_sheeps_table (account, password, ip, application, method) values (?, ?, ?, ?, ?)', (userid, passwd, pcap[IP].dst, application, method))
         cursor.close()
         conn.commit()
         conn.close()
