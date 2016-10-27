@@ -4,18 +4,20 @@ from scapy.all import *
 import re
 import sqlite3
 
+APP = {80: 'HTTP'}
+
 def http_analyze(pcap):
     try:
         temp_load = pcap[TCP][Raw].load
     except:
         return 
    
-    header_option = temp_load.split('\r\n')[0]
-    if re.match('^GET', header_option):
-        option = 'GET'
-        content = header_option.split('?')[-1].split(' ')[0]
-    elif re.match('^POST', header_option):
-        option = 'POST'
+    header_method = temp_load.split('\r\n')[0]
+    if re.match('^GET', header_method):
+        method = 'GET'
+        content = header_method.split('?')[-1].split(' ')[0]
+    elif re.match('^POST', header_method):
+        method = 'POST'
         content = temp_load.split('\r\n')[-1]
     else:
         return 
@@ -34,11 +36,16 @@ def http_analyze(pcap):
             passwd = value
     
     if userid != 'not found' and passwd != 'not found':
-        print 'IP:{}:{} {}=> userid = {} & passwd = {}'.format(pcap[IP].dst, pcap[IP].dport, option, userid, passwd)
+        if pcap[IP].dport in APP:
+            application = APP[pcap[IP].dport]
+        else:
+            application = pcap[IP].dport
         
+        print 'IP:{}:{} {}=> userid = {} & passwd = {}'.format(pcap[IP].dst, application, method, userid, passwd)
+    
         conn = sqlite3.connect('../django_wellofsheep/db.sqlite3')
         cursor = conn.cursor()
-        cursor.execute('insert into wellofsheep_sheeps_table (account, password, ip, option) values (?, ?, ?, ?)', (userid, passwd, pcap[IP].dst, option))
+        cursor.execute('insert into wellofsheep_sheeps_table (account, password, ip, application, method) values (?, ?, ?, ?, ?)', (userid, passwd, pcap[IP].dst, application, method))
         cursor.close()
         conn.commit()
         conn.close()
