@@ -35,18 +35,19 @@ def http_analyze(pcap):
     
     if userid != 'not found' and passwd != 'not found':
         print 'IP:{}:{} {}=> userid = {} & passwd = {}'.format(pcap[IP].dst, pcap[IP].dport, option, userid, passwd)
+        
         conn = sqlite3.connect('../django_wellofsheep/db.sqlite3')
         cursor = conn.cursor()
         cursor.execute('insert into wellofsheep_sheeps_table (account, password, ip, option) values (?, ?, ?, ?)', (userid, passwd, pcap[IP].dst, option))
         cursor.close()
         conn.commit()
         conn.close()
-
+        
 def main():
     nic_id = 'eth0'
     filter_rule = 'tcp'
     prn_func = http_analyze
-    sniff(iface = nic_id, filter = filter_rule, prn = prn_func, count = 0)
+    sniff(iface = nic_id, filter = filter_rule, prn = prn_func, store=0, count = 0)
 
 if __name__ == '__main__':
     main()

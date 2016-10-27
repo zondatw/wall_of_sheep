@@ -12,7 +12,7 @@
 							$('#_table').html(reponse);
 						}
 					});
-					setInterval("refresh()", 10000);
+					setTimeout("refresh()", 10000);
 				}
 				
 				$(function() {
@@ -22,19 +22,7 @@
 		</script>
 
 		<div id = '_table'>
-			<table>
-				<thead>
-					<tr>
-						<th>Account</th>
-						<th>Password</th>
-						<th>IP</th>
-						<th>option</th>
-					<tr>
-				</thead>
-				<tbody>
-					{% include 'wellofsheep/get_more_tables.html' %}
-				</tbody>
-			</table>
+			{% include 'wellofsheep/get_more_tables.html' %}
 		</div>
 		{% endblock %}
 	</article>
