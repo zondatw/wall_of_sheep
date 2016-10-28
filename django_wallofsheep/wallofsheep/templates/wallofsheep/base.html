@@ -1,12 +1,15 @@
 <!Doctype html>
+{% load staticfiles %}
 <html lang="en">
 	<head>
 		<title>zonda wall of sheep</title>
+		<link rel="stylesheet" href="{% static 'css/base.css' %}">
 	</head>
 
 	<body>
 		<header>
-			<h1>Zonda Wall Of Sheep</h1>
+			<h1>Zonda's</h1>
+			<h1>Wall Of Sheep</h1>
 		</header>
 		<article>	
 			{% block content %}

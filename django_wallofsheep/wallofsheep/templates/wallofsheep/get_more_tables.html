@@ -1,22 +1,22 @@
-<table>
-	<thead>
-		<tr>
-			<th>Account</th>
-			<th>Password</th>
-			<th>IP</th>
-			<th>Application</th>
-			<th>Method</th>
-		</tr>
-	</thead>
-	<tbody>
-		{% for sheep in sheeps %}
-				<tr>
-				<td>{{ sheep.account }}</td>
-				<td>{{ sheep.password }}</td>
-				<td>{{ sheep.ip }}</td>
-				<td>{{ sheep.application }}</td>
-				<td>{{ sheep.method }}</td>
+	<table>
+		<thead>
+			<tr>
+				<th>Account</th>
+				<th>Password</th>
+				<th>IP</th>
+				<th>Application</th>
+				<th>Method</th>
 			</tr>
-		{% endfor %}
-	</tbody>
-</table>
+		</thead>
+			<tbody>
+				{% for sheep in sheeps %}
+						<tr>
+						<td>{{ sheep.account }}</td>
+						<td>{{ sheep.password }}</td>
+						<td>{{ sheep.ip }}</td>
+						<td>{{ sheep.application }}</td>
+						<td>{{ sheep.method }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+	</table>

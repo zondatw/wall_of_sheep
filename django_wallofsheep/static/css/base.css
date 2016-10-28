@@ -1,0 +1,45 @@
+
+
+body { 
+	background-image: url(../image/sheep.png);
+	background-repeat: no-repeat;
+	background-size: 30%;
+	background-position: left;
+}
+
+header {
+	text-align: center;
+}
+
+header h1 {
+	color: #1a75ff;
+	font-family: cursive;
+}
+
+table {
+	margin: 0 auto;
+	text-align: center;
+	border: 1px solid ;
+	border-collapse: collapse;
+}
+
+table th, td {
+	border: 1px solid #ccc;
+	padding:3px 7px 2px 7px;
+	font-size: 12px;
+	font-family: cursive;
+}
+
+table thead tr {
+	background-color: #1aa3ff;
+}
+
+table tbody tr:nth-child(even) {
+	background-color: #CCC;
+}
+
+table tbody tr:nth-child(odd) {
+	background-color: #FAFAFA;
+}
+
+
